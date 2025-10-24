@@ -52,7 +52,7 @@ cd stock_tracking_interface
     ```
 3.  **Get a FRED API Key:**
     - Go to [https://fred.stlouisfed.org/docs/api/api_key.html](https://fred.stlouisfed.org/docs/api/api_key.html) and create a free API key.
-    - Open `backend/financial_analyzer.py` and replace `"b04b0764e1181f9e8c8735068e0f03ce"` with your actual FRED API key.
+    - Open `backend/financial_analyzer.py` and replace `"api-key"` with your actual FRED API key.
 
 ### 3. Frontend Setup
 
@@ -89,3 +89,4 @@ cd stock_tracking_interface
 - Add more advanced valuation models and financial metrics.
 - Improve UI/UX with more interactive charts and a more polished design.
 - Implement user authentication and portfolio tracking.
+_- create a professional, state of the art app for personal use, and most importantly make it free__
