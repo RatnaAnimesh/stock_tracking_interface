@@ -82,11 +82,22 @@ function App() {
                     <p>{analysis.ps_ratio ? analysis.ps_ratio.toFixed(2) : 'N/A'}</p>
                   </div>
                   <div className="metric">
-                    <h3>EV/EBITDA</h3>
-                    <p>{analysis.ev_to_ebitda ? analysis.ev_to_ebitda.toFixed(2) : 'N/A'}</p>
-                  </div>
-                </div>
-              )}
+                                      <h3>EV/EBITDA</h3>
+                                      <p>{analysis.ev_to_ebitda ? analysis.ev_to_ebitda.toFixed(2) : 'N/A'}</p>
+                                    </div>
+                                    <div className="metric">
+                                      <h3>PEG Ratio</h3>
+                                      <p>{analysis.peg_ratio ? analysis.peg_ratio.toFixed(2) : 'N/A'}</p>
+                                    </div>
+                                    <div className="metric">
+                                      <h3>EV/Sales</h3>
+                                      <p>{analysis.ev_to_sales ? analysis.ev_to_sales.toFixed(2) : 'N/A'}</p>
+                                    </div>
+                                    <div className="metric">
+                                      <h3>FCF Yield</h3>
+                                      <p>{analysis.fcf_yield ? (analysis.fcf_yield * 100).toFixed(2) + '%' : 'N/A'}</p>
+                                    </div>
+                                  </div>              )}
               {activeTab === 'Financial Health' && (
                 <div className="metrics-grid">
                   <div className="metric">
@@ -97,14 +108,65 @@ function App() {
                     <h3>Current Ratio</h3>
                     <p>{analysis.current_ratio ? analysis.current_ratio.toFixed(2) : 'N/A'}</p>
                   </div>
-                  <div className="metric">
-                    <h3>Quick Ratio</h3>
-                    <p>{analysis.quick_ratio ? analysis.quick_ratio.toFixed(2) : 'N/A'}</p>
-                  </div>
-                </div>
-              )}
+                                  <div className="metric">
+                                    <h3>Quick Ratio</h3>
+                                    <p>{analysis.quick_ratio ? analysis.quick_ratio.toFixed(2) : 'N/A'}</p>
+                                  </div>
+                                  <div className="metric">
+                                    <h3>Interest Coverage Ratio</h3>
+                                    <p>{analysis.interest_coverage_ratio ? analysis.interest_coverage_ratio.toFixed(2) : 'N/A'}</p>
+                                  </div>
+                                  <div className="metric">
+                                    <h3>Debt to Capital Ratio</h3>
+                                    <p>{analysis.debt_to_capital_ratio ? analysis.debt_to_capital_ratio.toFixed(2) : 'N/A'}</p>
+                                  </div>
+                                  <div className="metric">
+                                    <h3>ROIC</h3>
+                                    <p>{analysis.roic ? (analysis.roic * 100).toFixed(2) + '%' : 'N/A'}</p>
+                                  </div>
+                                  <div className="metric">
+                                    <h3>Altman Z-Score</h3>
+                                    <p>{analysis.altman_z_score ? analysis.altman_z_score.toFixed(2) : 'N/A'}</p>
+                                  </div>
+                                </div>              )}
               {activeTab === 'Past Performance' && (
                 <div>
+                  <h3>Profitability & Efficiency</h3>
+                  <div className="metrics-grid">
+                    <div className="metric">
+                      <h3>Gross Profit Margin</h3>
+                      <p>{analysis.gross_profit_margin ? (analysis.gross_profit_margin * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>Operating Profit Margin</h3>
+                      <p>{analysis.operating_profit_margin ? (analysis.operating_profit_margin * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>Net Profit Margin</h3>
+                      <p>{analysis.net_profit_margin ? (analysis.net_profit_margin * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>ROE</h3>
+                      <p>{analysis.roe ? (analysis.roe * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>ROA</h3>
+                      <p>{analysis.roa ? (analysis.roa * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>Asset Turnover</h3>
+                      <p>{analysis.asset_turnover ? analysis.asset_turnover.toFixed(2) : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>Revenue Growth (YoY)</h3>
+                      <p>{analysis.revenue_growth_rate ? (analysis.revenue_growth_rate * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                    <div className="metric">
+                      <h3>EPS Growth (YoY)</h3>
+                      <p>{analysis.eps_growth_rate ? (analysis.eps_growth_rate * 100).toFixed(2) + '%' : 'N/A'}</p>
+                    </div>
+                  </div>
+                  <h3 style={{ marginTop: '2rem' }}>Historical Trends</h3>
                   {analysis.historical_revenue && analysis.historical_net_income && (
                     <PastPerformanceChart 
                       revenueData={analysis.historical_revenue} 
@@ -133,49 +195,7 @@ function App() {
                   </div>
                 </div>
               )}
-                          {
-                          /*
-                          {activeTab === 'Ownership' && (
-                            <div>
-                              <h3>Insider Transactions</h3>
-                              {analysis.insider_transactions && analysis.insider_transactions.length > 0 ? (
-                                <table>
-                                  <thead>
-                                    <tr>
-                                      <th>Filing Date</th>
-                                      <th>Trade Date</th>
-                                      <th>Insider Name</th>
-                                      <th>Title</th>
-                                      <th>Trade Type</th>
-                                      <th>Price</th>
-                                      <th>Qty</th>
-                                      <th>Owned</th>
-                                      <th>Value</th>
-                                    </tr>
-                                  </thead>
-                                  <tbody>
-                                    {analysis.insider_transactions.map((transaction, index) => (
-                                      <tr key={index}>
-                                        <td>{transaction['Filing\xa0Date']}</td>
-                                        <td>{transaction['Trade\xa0Date']}</td>
-                                        <td>{transaction['Insider\xa0Name']}</td>
-                                        <td>{transaction['Title']}</td>
-                                        <td>{transaction['Trade\xa0Type']}</td>
-                                        <td>{transaction['Price']}</td>
-                                        <td>{transaction['Qty']}</td>
-                                        <td>{transaction['Owned']}</td>
-                                        <td>{transaction['Value']}</td>
-                                      </tr>
-                                    ))}
-                                  </tbody>
-                                </table>
-                              ) : (
-                                <p>No insider transactions found.</p>
-                              )}
-                            </div>
-                          )}
-                          */
-                          }
+
               {activeTab === 'Future Growth' && (
                 <div>
                   <h3>Growth Outlook</h3>
@@ -241,6 +261,24 @@ function App() {
                     </table>
                   ) : (
                     <p>No company officer information available from yfinance.</p>
+                  )}
+                </div>
+              )}
+              {activeTab === 'News' && (
+                <div className="news-container">
+                  <h3>Recent News</h3>
+                  {analysis.news && analysis.news.map((article, index) => (
+                    <div key={index} className="news-article">
+                      <h4><a href={article.link} target="_blank" rel="noopener noreferrer">{article.title}</a></h4>
+                      <p>{article.publisher}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {activeTab === 'Economy' && (
+                <div>
+                  {analysis.fred_data && (
+                    <EconomyChart fredData={analysis.fred_data} />
                   )}
                 </div>
               )}

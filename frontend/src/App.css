@@ -125,3 +125,7 @@ th {
   margin-top: 0;
   color: #6c757d;
 }
+
+.other-info-container {
+  text-align: left;
+}
