@@ -316,7 +316,7 @@ def analyze_stock(ticker):
     Performs a financial analysis of a given stock.
     """
     stock_data = get_stock_data(ticker)
-    fred_data = get_fred_data(api_key="b04b0764e1181f9e8c8735068e0f03ce")
+    fred_data = get_fred_data(api_key="api-key")
     
     analysis = {
         "ticker": ticker,
